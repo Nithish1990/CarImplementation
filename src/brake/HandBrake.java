@@ -3,7 +3,7 @@ package brake;
 import constant.brake_type.BrakeType;
 
 public class HandBrake {
-    public BrakeType brakeType = BrakeType.ABS;
+    public BrakeType brakeType = BrakeType.DRUM;
     private boolean handBrake = false;
 
     public void handBreakPush() {

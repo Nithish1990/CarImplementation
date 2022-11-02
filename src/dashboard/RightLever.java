@@ -1,8 +1,8 @@
 package dashboard;
 
 import light.Indicator;
-
-class RightLever {
+//yet to implement
+public final class RightLever {
 
     public void offRightIndicator(Indicator rightIndicators[]){// if offRightIndicator called all the light are off
         for(int i = 0;i<rightIndicators.length;i++)

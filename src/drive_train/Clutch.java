@@ -1,17 +1,17 @@
 package drive_train;
 import constant.material.Material;
 
-public class Clutch {
+public final class Clutch {
     private Material material = Material.STEAL;
     private  int transmittingPower = 1;
-    private boolean isEngage = true;
+    private boolean isEngage = false;
     private GearBox gearBox;
 
 
     //Behavior
-    public void spin(int rpm){
+    protected void spin(int torque){
         if(!isEngage) {
-            gearBox.rotate(rpm * transmittingPower);
+            gearBox.rotate(torque * transmittingPower);
         }
     }
 

@@ -1,16 +1,17 @@
 package pedal;
 
 import brake.Brake;
+import brake.BrakeSytem;
 
-public class BrakePedal extends Pedal{
-    private Brake brake;
+public final class BrakePedal extends Pedal{
+    private BrakeSytem brakeSytem;
     //behavior
     @Override
     public void press() {
         super.setPressingPercentage(super.getPressingPercentage()*10);
         if(super.getPressingPercentage()>100)
             super.setPressingPercentage(100);
-        brake.increaseFriction(super.getPressingPercentage());
+        brakeSytem.applyBrake(super.getPressingPercentage());
     }
     @Override
     public void release() {
@@ -18,7 +19,7 @@ public class BrakePedal extends Pedal{
         if(super.getPressingPercentage()<1)
             super.setPressingPercentage(1);
 
-        brake.increaseFriction(super.getPressingPercentage());
+        brakeSytem.applyBrake(super.getPressingPercentage());
     }
 
     // Setters and Getter
@@ -29,7 +30,7 @@ public class BrakePedal extends Pedal{
         super.setPressingPercentage(brake);
     }
 
-    public BrakePedal(Brake brake){
-        this.brake = brake;
+    public BrakePedal(BrakeSytem brakeSytem){
+        this.brakeSytem = brakeSytem;
     }
 }

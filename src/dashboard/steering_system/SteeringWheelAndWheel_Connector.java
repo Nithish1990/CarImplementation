@@ -1,9 +1,9 @@
-package dashboard;
+package dashboard.steering_system;
 
 
 import wheel.FrontWheel;
 
-public class SteeringWheelAndWheel_Connector {
+public class SteeringWheelAndWheel_Connector implements SteeringWheelMechanism {
     private FrontWheel wheel;
 
     public void turnLeft() {

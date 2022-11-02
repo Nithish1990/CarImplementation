@@ -1,12 +1,13 @@
 package car_body;
 
-public class GasTank {
+public final class GasTank {
     private int capacity = 20;
-    private int fuel = 100;
+    private int fuel = 0;
     // behavior
 
     public void addFuel(int fuel){
         this.fuel+=fuel;
+        if(fuel>100)fuel = 100;
     }
 
     public int getFuel() {
@@ -14,5 +15,6 @@ public class GasTank {
     }
     public void consumeFuel(){
         fuel--;
+        if(fuel<0)fuel = 0;
     }
 }

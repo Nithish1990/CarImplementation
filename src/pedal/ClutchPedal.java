@@ -2,7 +2,7 @@ package pedal;
 
 import drive_train.Clutch;
 
-public class ClutchPedal extends Pedal{
+public final class ClutchPedal extends Pedal{
     private Clutch clutch;
     @Override
     public void press() {

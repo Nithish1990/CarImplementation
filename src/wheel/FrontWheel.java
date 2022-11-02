@@ -1,10 +1,15 @@
 package wheel;
 import brake.Brake;
-public class FrontWheel extends  Wheel{
+import wheel.WheelTurningSensor;
+import wheel.Wheel;
+
+public final class FrontWheel extends Wheel {
     private  int angleOfRotation = 90;
+    private WheelTurningSensor wheelTurningSensor = new WheelTurningSensor();
     public void turnLeft(){
         angleOfRotation +=30;
         if(angleOfRotation>120)angleOfRotation = 120;
+        wheelTurningSensor.setAngleOfRotation(angleOfRotation);
     }
     public void turnRight(){angleOfRotation -=30;
         if(angleOfRotation<60)angleOfRotation = 60;}

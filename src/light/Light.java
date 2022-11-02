@@ -2,11 +2,12 @@ package light;
 
 public abstract class Light{
     private Boolean lightIsOn = false;
-    private int size;
-    public void onLight(){
-        lightIsOn = true;
+    public abstract void onLight();
+    public  abstract void  offLight();
+    protected void setLightIsOn(Boolean lightIsOn) {
+        this.lightIsOn = lightIsOn;
     }
-    public  void  offLight(){
-        lightIsOn = false;
+    public boolean isLightIsOn(){
+        return lightIsOn;
     }
 }

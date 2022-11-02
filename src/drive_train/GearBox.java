@@ -1,17 +1,16 @@
 package drive_train;
 
-import drive_train.Axle;
 
-public class GearBox{
-
+public final class GearBox{
 
 
-    private int gear = 0;
-    private int gearRatio[] = {0,1,2,4,5,7};// if gear increase the gear shaft the position to higher gear and increase torque
+
+    private int gear = 1;
+    private int gearRatio[] = {1,4,7,10,14,2};// if gear increase the gear shaft the position to higher gear and increase torque
     private boolean isClutchApplied = false;
-    private Axle axle;//has reference
+    private RearAxle rearAxle;//has reference
     private int gearPositionX = 0,getGearPositionY = 0;
-    private int rpm = 0;
+    private int torque;
 
     //behavior
     public void shiftRight(){}
@@ -19,22 +18,21 @@ public class GearBox{
     public void shiftUp(){}
     public void shiftDown(){}
 
-    public void rotate(int rpm){
 
-        if (gear != 6)
-            axle.spin(rpm * gearRatio[gear]);
-        else {
-            axle.spinReverse(rpm * 1);
-        }
-        this.rpm = rpm;
+
+    //behavior
+    protected void rotate(int torque){
+
+        rearAxle.spin(torque* gearRatio[gear]);
+        this.torque = torque;
     }
 
     //getter setters constructor
     public int getGear() {
         return gear;
     }
-    public GearBox (Axle axle){
-        this.axle = axle;
+    public GearBox (RearAxle axle){
+        this.rearAxle = axle;
     }
 
     public void setGear(int gear){

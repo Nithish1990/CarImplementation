@@ -1,8 +1,8 @@
 package dashboard;
 
 import light.HeadLight;
-
-public class LeftLever{
+//yet to implement
+public final class LeftLever{
     public void headLightOnHighBeam(HeadLight headLight){
         headLight.highBeam();
     }

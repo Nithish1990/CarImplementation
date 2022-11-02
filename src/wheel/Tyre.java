@@ -2,7 +2,7 @@ package wheel;
 
 import constant.material.Material;
 
-public class Tyre{
+public final class Tyre{
     private final Material material  = Material.RUBBER;
     private int airPressure = 50;
 

@@ -1,24 +1,23 @@
 package helper;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class CustomScanner {
-        public static CustomScanner sc;
-        public static Scanner scan;
-        private  CustomScanner(){}
-        public static CustomScanner getInstanceOf(){
-            if(sc == null){
-                sc = new CustomScanner();
-                scan = new Scanner(System.in);
+public final class CustomScanner {
+        public static int scan(String str){
+            System.out.println(str);
+            return scan();
+        }
+        public static int scan() {
+            System.out.print("Enter Input: ");
+            int userInput = -1;
+            while (true){
+                try{
+                    userInput = new Scanner(System.in).nextInt();
+                    return userInput;
+                }catch (InputMismatchException e) {
+                    System.out.println("Enter Valid Input");
+                }
             }
-            return sc;
-        }
-        public int scan(String str){
-            System.out.print(str+"\nEnter Input: ");
-            return  scan.nextInt();
-        }
-        public int scan(){
-            System.out.println("Enter Input: ");
-            return scan.nextInt();
         }
 }
