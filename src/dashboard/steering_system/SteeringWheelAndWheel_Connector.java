@@ -4,17 +4,22 @@ package dashboard.steering_system;
 import wheel.FrontWheel;
 
 public class SteeringWheelAndWheel_Connector implements SteeringWheelMechanism {
-    private FrontWheel wheel;
+    private FrontWheel wheelL,wheelR;
 
     public void turnLeft() {
-        wheel.turnLeft();
+
+        wheelL.turnLeft();
+        wheelR.turnLeft();
     }
 
     public void turnRight() {
-        wheel.turnRight();
+
+        wheelL.turnRight();
+        wheelR.turnRight();
     }
 
-    public SteeringWheelAndWheel_Connector(FrontWheel wheel) {
-        this.wheel = wheel;
+    public SteeringWheelAndWheel_Connector(FrontWheel wheelL,FrontWheel wheelR) {
+        this.wheelL = wheelL;
+        this.wheelR = wheelR;
     }
 }

@@ -13,13 +13,14 @@ public class Main{
 
         car.startCar();
         while (true) {
-            System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            System.out.println("Option are " +
+
+            System.out.println("-----------------------------------------------------------------------------------------------------------------"+
+                    "\nOption are " +
                     "\n 1.GearBox " +
                     "\n 2.Pedals " +
                     "\n 3.For Steering Control (lever control yet to implement) " +
                     "\n 4.To start the car Or To off the car" +
-                    "\n 5.For exit");
+                    "\n -1.For exit");
             car.showStatusOfTheCar();
             userInput = CustomScanner.scan();
             switch (userInput) {
@@ -54,7 +55,7 @@ public class Main{
                     else if(userInput ==2 )
                         car.stopCar();
                     break;
-                case 5:
+                case -1:
                     System.out.println("source code in  https://github.com/Nithish1990/CarImplementation/tree/master/src Thank you.... ");
                     return;
                 default:

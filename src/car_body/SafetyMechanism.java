@@ -15,8 +15,6 @@ public class SafetyMechanism {
     private WheelSpeedSensor speedSensor;
     private GearBoxSensor gearBoxSensor;
     private WheelTurningSensor wheelTurningSensor;
-
-
     private Engine engine;
 
 

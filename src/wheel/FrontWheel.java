@@ -25,4 +25,14 @@ public final class FrontWheel extends Wheel {
     public void setBrake(Brake brake) {
         super.setBrake(brake);
     }
+
+
+    public WheelTurningSensor getWheelTurningSensor() {
+        return wheelTurningSensor;
+    }
+
+    public void setWheelTurningSensor(WheelTurningSensor wheelTurningSensor) {
+        this.wheelTurningSensor = wheelTurningSensor;
+    }
+
 }

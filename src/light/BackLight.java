@@ -7,13 +7,4 @@ public final class BackLight extends  Light{
 
 
     public void highBeam(){}//on when on brake applied
-
-    @Override
-    public void onLight() {
-        setLightIsOn(true);
-    }
-    @Override
-    public void offLight() {
-        setLightIsOn(false);
-    }
 }

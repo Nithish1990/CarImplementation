@@ -7,8 +7,7 @@ public class Brake{
     private BrakeType brakeType = BrakeType.DISK;
     private int frictionToTheWheel = 1;
     // behavior
-
-    public void increaseFriction(int percentage){
+    protected void increaseFriction(int percentage){
         frictionToTheWheel = percentage;
     }
 

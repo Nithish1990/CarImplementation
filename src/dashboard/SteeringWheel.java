@@ -1,5 +1,6 @@
 package dashboard;
 
+import constant.material.Material;
 import dashboard.steering_system.SteeringWheelAndWheel_Connector;
 import dashboard.steering_system.SteeringWheelMechanism;
 
@@ -10,8 +11,7 @@ public final class SteeringWheel {
     private  int angelOfRotation = 90;
 
 
-
-    //references
+    //reference
     private SteeringWheelMechanism steeringWheelAndWheel_connector;
 
 

@@ -6,7 +6,7 @@ public class MusicSystem {
     int songPointer = 0;
     private int volume = 30;
     public void playSong(){
-        System.out.println();
+        System.out.println(songsList.get(songPointer));
     }
 
     public void increaseVolume(){

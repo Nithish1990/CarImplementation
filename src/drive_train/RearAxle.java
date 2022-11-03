@@ -4,7 +4,7 @@ import wheel.Wheel;
 public final class RearAxle {
 
     //attribute
-    private static Material material = Material.STEAL;
+    private Material material = Material.STEAL;
 
     //references
     private Wheel backWheelL,backWheelR;

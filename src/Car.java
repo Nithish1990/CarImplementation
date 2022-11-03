@@ -1,4 +1,4 @@
-import brake.BrakeSytem;
+import brake.BrakeSystem;
 import brake.HandBrake;
 import constant.color.Color;
 import dashboard.SteeringWheel;
@@ -37,13 +37,13 @@ public class Car{
     private MusicSystem musicSystem = new MusicSystem();
 
     private HandBrake handBrake = new HandBrake();
-    private SteeringWheelAndWheel_Connector steeringWheelAndWheel_Connector = new SteeringWheelAndWheel_Connector(frontWheelLeft);
+    private SteeringWheelAndWheel_Connector steeringWheelAndWheel_Connector = new SteeringWheelAndWheel_Connector(frontWheelLeft,frontWheelRight);
     private SteeringWheel steeringWheel = new SteeringWheel(steeringWheelAndWheel_Connector);
     private CarBody carBody = new CarBody();
 
-    private BrakeSytem brakeSytem = new BrakeSytem(frontWheelLeft.getBrake(),frontWheelRight.getBrake(),backWheelLeft.getBrake(),backWheelRight.getBrake());
+    private BrakeSystem brakeSystem = new BrakeSystem(frontWheelLeft.getBrake(),frontWheelRight.getBrake(),backWheelLeft.getBrake(),backWheelRight.getBrake());
     //pedals
-    private Pedal accelerationPedal = new AccelerationPedal(engine),clutchPedal = new ClutchPedal(clutch),brakePedal = new BrakePedal(brakeSytem);
+    private Pedal accelerationPedal = new AccelerationPedal(engine),clutchPedal = new ClutchPedal(clutch),brakePedal = new BrakePedal(brakeSystem);
 
     // behavior
     protected void startCar(){
@@ -53,7 +53,9 @@ public class Car{
         engine.setEngineOn(false);
     } //stop the car and engine
     public void doorFunctions(){}//door fnc
-
+    public void addFuel(int liters){
+        gasTank.addFuel(liters);
+    }
     public void showStatusOfTheCar(){
 
         backWheelRight.rotate();
