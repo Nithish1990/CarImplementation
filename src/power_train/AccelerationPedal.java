@@ -1,6 +1,5 @@
-package drive_train;
+package power_train;
 
-import drive_train.Engine;
 import pedal.Pedal;
 
 public final class AccelerationPedal extends Pedal {
@@ -14,7 +13,7 @@ public final class AccelerationPedal extends Pedal {
 
     @Override
     public void release() {
-        super.setPressingPercentage(super.getPressingPercentage()-10);
+        super.setPressingPercentage(super.getPressingPercentage()-30);
         if(super.getPressingPercentage()<0)super.setPressingPercentage(0);
         engine.changeTorque(super.getPressingPercentage());
     }

@@ -1,6 +1,6 @@
 package car_body;
 
-public final class GasTank {
+public final class FuelTank {
     private int capacity = 100;
     private int fuel = 100;
     // behavior

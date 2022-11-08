@@ -1,7 +1,7 @@
 package pedal;
 
 public abstract class Pedal {
-    private int pressingPercentage = 1;
+    protected int pressingPercentage = 1;
     public abstract void press();
     public abstract void release();
 

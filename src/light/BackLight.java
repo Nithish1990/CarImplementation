@@ -6,5 +6,5 @@ public final class BackLight extends  Light{
 
 
 
-    public void highBeam(){}//on when on brake applied
+    public void highBeam(){}//on when on brake applied  by ecu
 }

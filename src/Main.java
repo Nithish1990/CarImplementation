@@ -1,12 +1,14 @@
+
 import constant.color.Color;
 
 import helper.CustomScanner;
+import pedal.Pedal;
 
 
 public class Main{
-
+    static Car car;
     public static void main(String[] args) {
-        Car car = new CarManufacturer().setModel("XUV").setColor(Color.BLUE).setCompanyName("JOGO").manufactureCar();//using Builder pattern
+        car = new CarManufacturer().setModel("JEEP").setColor(Color.BLUE).manufactureCar();//using Builder pattern
         int userInput = CustomScanner.scan("Enter 1 to Start the car");
         while (userInput!=1)
             userInput = CustomScanner.scan("Enter Only 1 to Start the car");
@@ -25,27 +27,25 @@ public class Main{
             userInput = CustomScanner.scan();
             switch (userInput) {
                 case 1://hand break also come here
-                    userInput = CustomScanner.scan("Enter the gear to change 0,1,2,3,4,5,6" );
-                    car.getGearBox().setGear(userInput);
+                    car.getGearBox().getGearBoxLever().changeGear();
                     break;
                 case 2:
+//                  PEDAL options...
                     userInput = CustomScanner.scan("Options are " +
                                             "\n 1.Clutch" +
                                             "\n 2.Brake " +
                                             "\n 3.Acceleration"+
                                             "\n -1 to Main Options");
-                    System.out.println("Enter 1 to Press or 2 to Release");
                     if(userInput!=-1)
-                    car.selectPedal(userInput);
+                        pressOrRelease(selectPedal(userInput),CustomScanner.scan("Enter 1 to press or 2 to release"));
                     break;
                 case 3:// steeringWheel fnc
-                    userInput = CustomScanner.scan("ENTER 1 to turn right, 2 to left, 0 to horn else -1 to Main Options" );
-                    if (userInput == 1) {
+                    userInput = CustomScanner.scan("ENTER 1 to turn right, 2 to left else -1 to Main Options" );
+                    if (userInput == 1)
                         car.getSteeringWheel().turnRight();
-                    }
                     else if (userInput == 2)
                         car.getSteeringWheel().turnLeft();
-                    else if(userInput == 0)
+                    else if(userInput == -1)
                         car.getSteeringWheel().horn();
                     break;
                 case 4:
@@ -61,6 +61,22 @@ public class Main{
                 default:
                     System.out.println("Enter Valid Input....");
             }
+        }
+    }
+    public static Pedal selectPedal(int userInput){
+        if(userInput == 1){
+//            car.getAccelerationPedal().setPressingPercentage(0);// if we
+            return car.getClutchPedal();
+        }
+        if(userInput == 2)return car.getBrakePedal();
+        if(userInput == 3)return car.getAccelerationPedal();
+        return selectPedal(CustomScanner.scan("Enter valid input"));
+    }
+    public static void pressOrRelease(Pedal pedal,int userInput){
+        if(userInput == 1){
+            pedal.press();
+        }else if(userInput ==2 ){
+            pedal.release();
         }
     }
 }

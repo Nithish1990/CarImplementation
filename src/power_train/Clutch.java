@@ -1,4 +1,4 @@
-package drive_train;
+package power_train;
 import constant.material.Material;
 
 public final class Clutch {
@@ -9,9 +9,10 @@ public final class Clutch {
 
 
     //Behavior
-    protected void spin(int torque){
+    protected void transmitTorque(int torque){
         if(!isEngage) {
-            gearBox.rotate(torque * transmittingPower);
+
+            gearBox.gearSpin(torque * transmittingPower);
         }
     }
 

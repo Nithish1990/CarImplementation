@@ -1,4 +1,4 @@
-package drive_train;
+package power_train;
 import constant.material.Material;
 import wheel.Wheel;
 public final class RearAxle {

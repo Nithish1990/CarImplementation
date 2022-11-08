@@ -16,15 +16,6 @@ public final class FrontWheel extends Wheel {
     public int getAngleOfRotation() {
         return angleOfRotation;
     }
-    @Override
-    public Brake getBrake(){
-        return  super.getBrake();
-    }
-
-    @Override
-    public void setBrake(Brake brake) {
-        super.setBrake(brake);
-    }
 
 
     public WheelTurningSensor getWheelTurningSensor() {
@@ -34,5 +25,6 @@ public final class FrontWheel extends Wheel {
     public void setWheelTurningSensor(WheelTurningSensor wheelTurningSensor) {
         this.wheelTurningSensor = wheelTurningSensor;
     }
+
 
 }

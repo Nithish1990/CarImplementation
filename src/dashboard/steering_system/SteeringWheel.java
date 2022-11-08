@@ -1,10 +1,7 @@
-package dashboard;
+package dashboard.steering_system;
 
-import constant.material.Material;
-import dashboard.steering_system.SteeringWheelAndWheel_Connector;
-import dashboard.steering_system.SteeringWheelMechanism;
 
-public final class SteeringWheel {
+public final class SteeringWheel implements Steerable {
 
 
     //attribute
@@ -12,8 +9,7 @@ public final class SteeringWheel {
 
 
     //reference
-    private SteeringWheelMechanism steeringWheelAndWheel_connector;
-
+    private SteeringWheelAndWheel_Connector steeringWheelAndWheel_connector;
 
     //Behavior or methods
     public void turnLeft(){ //change the angle of in steering wheel which turn the FrontWheel

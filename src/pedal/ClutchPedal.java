@@ -1,6 +1,6 @@
 package pedal;
 
-import drive_train.Clutch;
+import power_train.Clutch;
 
 public final class ClutchPedal extends Pedal{
     private Clutch clutch;

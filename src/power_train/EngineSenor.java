@@ -1,4 +1,4 @@
-package drive_train;
+package power_train;
 
 public final class EngineSenor {
 

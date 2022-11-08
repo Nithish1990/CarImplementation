@@ -1,7 +1,9 @@
 package brake;
 
 import constant.brake_type.BrakeType;
-
+/*
+yet to implement
+ */
 public class HandBrake {
     public BrakeType brakeType = BrakeType.DRUM;
     private boolean handBrake = false;

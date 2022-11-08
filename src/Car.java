@@ -1,15 +1,14 @@
 import brake.BrakeSystem;
 import brake.HandBrake;
 import constant.color.Color;
-import dashboard.SteeringWheel;
+import dashboard.steering_system.SteeringWheel;
 import dashboard.steering_system.SteeringWheelAndWheel_Connector;
-import drive_train.RearAxle;
-import drive_train.Clutch;
-import drive_train.Engine;
-import drive_train.GearBox;
+import power_train.RearAxle;
+import power_train.Clutch;
+import power_train.Engine;
 import dashboard.music_player.*;
-import helper.CustomScanner;
-import drive_train.AccelerationPedal;
+import power_train.GearBox;
+import power_train.AccelerationPedal;
 import pedal.BrakePedal;
 import pedal.ClutchPedal;
 import pedal.Pedal;
@@ -29,11 +28,11 @@ public class Car{
     // objects
     public Wheel backWheelLeft = new Wheel(),backWheelRight = new Wheel();
     public FrontWheel frontWheelLeft = new FrontWheel(),frontWheelRight = new FrontWheel();
-    private RearAxle axle = new RearAxle(backWheelLeft,backWheelRight);
-    private GearBox gearBox = new GearBox(axle);
-    private GasTank gasTank = new GasTank();
-    private Clutch clutch = new Clutch(gearBox);
-    private Engine engine = new Engine(clutch,gasTank);
+    private RearAxle rearAxle = new RearAxle(backWheelLeft,backWheelRight);
+    private GearBox gearBox = new GearBox(rearAxle);
+    private FuelTank fuelTank = new FuelTank();
+    private Clutch clutch = new Clutch( gearBox);
+    private Engine engine = new Engine(clutch,fuelTank);
     private MusicSystem musicSystem = new MusicSystem();
 
     private HandBrake handBrake = new HandBrake();
@@ -44,7 +43,7 @@ public class Car{
     private BrakeSystem brakeSystem = new BrakeSystem(frontWheelLeft.getBrake(),frontWheelRight.getBrake(),backWheelLeft.getBrake(),backWheelRight.getBrake());
     //pedals
     private Pedal accelerationPedal = new AccelerationPedal(engine),clutchPedal = new ClutchPedal(clutch),brakePedal = new BrakePedal(brakeSystem);
-
+    private ECU ecu = new ECU(engine.getEngineSenor(), gearBox.getGearBoxSensor(),backWheelLeft.getWheelSpeedSensor());
     // behavior
     protected void startCar(){
         engine.setEngineOn(true);
@@ -53,25 +52,29 @@ public class Car{
         engine.setEngineOn(false);
     } //stop the car and engine
     public void doorFunctions(){}//door fnc
-    public void addFuel(int liters){
-        gasTank.addFuel(liters);
+    public void addFuel(int fuel){
+        fuelTank.addFuel(fuel);
     }
     public void showStatusOfTheCar(){
-
-        backWheelRight.rotate();
+        if(ecu.checkForGearSpeed()){
+            System.out.println("Engine failure");
+            engine.setEngineOn(false);
+        }
+        backWheelRight.rotate();//rotate the wheel
         backWheelLeft.rotate();
-        System.out.println(toString());// show the like meter bars eg speed distance fuel
+        System.out.println(ecu);
+        System.out.println(this);// show the like meter bars eg speed distance fuel
     }
 
     @Override
     public String toString(){
 
-        String tyre = frontWheelLeft.getAngleOfRotation() == 120?"\\\\":frontWheelLeft.getAngleOfRotation() == 90?"||":"//",direction = gearBox.getGear() != 6?"^":"\\/";
+        String tyre = frontWheelLeft.getAngleOfRotation() == 120?"\\\\":frontWheelLeft.getAngleOfRotation() == 90?"||":"//",direction = getGearBox().getGear() != 6?"^":"\\/";
         return " Speed: "+backWheelLeft.getSpeed()/10+
                 ", Distance Travelled: "+backWheelLeft.getDistanceTravelled()+
-                ", Fuel: "+gasTank.getFuel()+
+                ", Fuel: "+fuelTank.getFuel()+
                 "\n"+tyre+
-                " Current Gear "+gearBox.getGear()+
+                " Current Gear "+getGearBox().getGear()+
                 ", Clutch "+(clutch.isEngage()?"//":"||")+
                 ", Acceleration "+accelerationPedal.getPressingPercentage()+
                 ", Brake "+backWheelLeft.getBrake().getFrictionToTheWheel()+
@@ -146,15 +149,15 @@ public class Car{
         this.carBody = carBody;
     }
 
-    public RearAxle getRwd() {
-        return axle;
+    public RearAxle getRearAxle() {
+        return rearAxle;
     }
     public void setRwd(RearAxle axle) {
-        this.axle = axle;
+        this.rearAxle = axle;
     }
 
-    public Pedal getClutch(){
-        return clutchPedal;
+    public Clutch getClutch(){
+        return clutch;
     }
 
     public Pedal getAccelerationPedal() {
@@ -184,27 +187,6 @@ public class Car{
     public void setClutch(ClutchPedal clutch){
         this.clutchPedal = clutch;
     }
-    protected void selectPedal(int userInput){
-        switch (userInput){
-            case 1:// in future method overloading will be implemented
-                userInput = CustomScanner.scan();
-                press(clutchPedal,userInput);
-                break;
-            case 2:// brake
-                userInput = CustomScanner.scan();
-                press(brakePedal,userInput);
-                break;
-            case 3:// acceleration
-                userInput = CustomScanner.scan();
-                press(accelerationPedal,userInput);
-                break;
-        }//switch
-    }
-    protected static void press(Pedal pedal,int userInput){
-        if(userInput == 1){
-            pedal.press();
-        }else{
-            pedal.release();
-        }
-    }
+
+
 }

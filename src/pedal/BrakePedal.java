@@ -17,7 +17,6 @@ public final class BrakePedal extends Pedal{
         super.setPressingPercentage(super.getPressingPercentage()/10);
         if(super.getPressingPercentage()<1)
             super.setPressingPercentage(1);
-
         brakeSystem.applyBrake(super.getPressingPercentage());
     }
 

@@ -3,7 +3,7 @@ package helper;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public final class CustomScanner {
+public class CustomScanner {
         public static int scan(String str){
             System.out.println(str);
             return scan();

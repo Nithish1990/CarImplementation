@@ -3,12 +3,13 @@ import brake.Brake;
 
 public class Wheel {
 
-    private WheelSpeedSensor wheelSpeedSensor = new WheelSpeedSensor();
+
     private int circumference = 10;//size of wheel
     private int speed = 0;
     private int distanceTravelled = 0;
     private Brake brake = new Brake();
     private Tyre tyre = new Tyre();
+    protected WheelSpeedSensor wheelSpeedSensor = new WheelSpeedSensor(this);
 
     //backWheel behavior
     public void rotate(int rpm){// this method will call by rearAxle with rpm speed
@@ -17,10 +18,9 @@ public class Wheel {
     }
     public void rotate(){// why without rpm is rotating in ideal speed
         this.speed = this.speed/ brake.getFrictionToTheWheel();
+        if(speed<0)speed = 0;
         wheelSpeedSensor.setSpeed(speed);
     }
-
-
 
     // getters setters
     public int getCircumference() {
